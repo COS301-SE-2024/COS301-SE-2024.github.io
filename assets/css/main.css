@@ -83,6 +83,7 @@
 
 .caption {
 	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 html, body, div, span, applet, object,
