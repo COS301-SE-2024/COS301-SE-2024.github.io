@@ -240,7 +240,7 @@
 
 			$(document).ready(function() {
 				$('.logo_link').on("click", (e) => {
-					console.log(e)
+					// console.log(e)
 				})
 			});
 
@@ -252,6 +252,7 @@
 					var s = '';
 
 					$a.nextAll().each(function() {
+						// console.log(this.outerHTML)
 						s += this.outerHTML;
 						
 					});

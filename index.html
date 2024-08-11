@@ -12,10 +12,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
 	<meta property="og:site_name" content="CS@UP Project Day">
-	<meta property="og:title" content="CS@UP Project Day 2023" />
+	<meta property="og:title" content="CS@UP Project Day 2024" />
+	<meta property="og:tags" content="CS@UP" />
 	<meta property="og:description"
 		content="The University of Pretoria's final year Computer Science Projects landing page." />
-	<meta property="og:image" itemprop="image" content="https://cos301-se-2023.github.io/images/UP.png">
+	<meta property="og:image" itemprop="image" content="https://cos301-se-2024.github.io/images/UP.png">
 	<meta property="og:type" content="website" />
 	<link rel="shortcut icon" href="https://www.cs.up.ac.za/images/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="https://www.cs.up.ac.za/images/favicon.ico" type="image/x-icon">
@@ -30,7 +31,7 @@
 	<!-- <h1 class="center">Please Note: Website under development</h1> -->
 	<img src="images/UP.png" width="350" class="up" />
 	<h1 class="center"> Department of Computer Science </h1>
-	<h1 class="center"> COS 301 Capstone Project 2023</h1>
+	<h1 class="center"> COS 301 Capstone Projects 2024</h1>
 
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -61,6 +62,7 @@
 				<br />
 				<h2> <span class="name"></span> <br />
 					By <span class="team"></span></h2>
+					<p class="chips"></p>
 				<p class="description">
 				</p>
 				<ul class="icons center margin-fix">
@@ -650,7 +652,7 @@
 		}
 
 		const clientNames = {
-			"sss" : "",
+			"sss" : "Sharp Software Solutions",
 			"epi" : "EPI-USE",
 			"labs" : "EPI-USE Labs",
 			"agb" : "Agile Bridge",
@@ -670,46 +672,59 @@
 		for (var i = 0; i < projects.length; i++) {
 
 			template.find(".name").html(projects[i].pName);
+
 			template.find(".team").html(projects[i].teamName);
+
 			template.find(".description").html(projects[i].longDesc);
 
-			if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".png"))
+			if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".png")) {
 				template.find(".logo").attr("src", "/images/fulls/transparent_logos/"+projects[i].no+".png");
-			else {
-				if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".jpg")) {
+			}
+			else if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".jpg")) {
 					template.find(".logo").attr("src", "/images/fulls/transparent_logos/"+projects[i].no+".jpg");
-				} 
-				else {
-					if(imageExists("/images/fulls/logos/"+projects[i].no+".png")) {
-						template.find(".logo").attr("src", "/images/fulls/logos/"+projects[i].no+".png");
-				} 
-				else {
-					template.find(".logo").attr("src", "/images/fulls/logos/"+projects[i].no+".jpg");
-					}
-				}
+			} 
+			else if(imageExists("/images/fulls/logos/"+projects[i].no+".png")) {
+					template.find(".logo").attr("src", "/images/fulls/logos/"+projects[i].no+".png");
+			} else {
+				template.find(".logo").attr("src", "/images/fulls/logos/"+projects[i].no+".jpg");
 			}
 
 			if(imageExists("/images/team_photos/"+projects[i].no+".png"))
 				template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".png");
-			else {
+			else if(imageExists("/images/team_photos/"+projects[i].no+".jpg")) {
 				template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".jpg");
+			} else {
+				template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".jpeg");
 			}
 
 
 			template.find(".fa-github").attr("href", projects[i].gLink);// + projects[i].name.replaceAll(" ", "-"));
+
 			template.find(".fa-envelope").attr("href", "mailto:"+projects[i].email);
+
 			if (projects[i].projectWebsite !== "#") {
 				template.find(".fa-globe-africa").attr("href", projects[i].projectWebsite);
 				template.find(".fa-globe-africa").removeAttr("disabled");
 			} else {
 				template.find(".fa-globe-africa").attr("disabled", "disabled");
 			}
+
 			if (projects[i].video && projects[i].video !== "#") {
 				template.find(".fa-youtube").attr("href", projects[i].video);
 				template.find(".fa-youtube").removeAttr("disabled");
 			} else {
 				template.find(".fa-youtube").attr("disabled", "disabled");
 			}
+
+			var chips = ""
+			if(!Array.isArray(projects[i].tags))
+				 chips = projects[i].tags.split(',').map(item => `<p class='chip-item'>${item.trim()}</p>`).join("")
+			else
+				chips = projects[i].tags.map(item => `<p class='chip-item'>${item.trim()}</p>`).join("")
+			
+
+			template.find(".chips").html(chips);
+
 			template.find(".client").attr("alt", clientNames[[i].mentorOrg]);
 			template.find(".client_org").attr("title", clientNames[projects[i].mentorOrg]);
 			template.find(".client_org").html("Product Owner: " + clientNames[projects[i].mentorOrg]);
