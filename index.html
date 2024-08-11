@@ -320,7 +320,7 @@
 	<script>
 		var org = "COS301-SE-2024";
 
-		const projects = [
+		var projects = [
   {
     "no": 1,
     "pName": "WorkWise Central",
@@ -635,6 +635,7 @@
   }
 
   ]
+  
 
 
 		// **********
@@ -668,6 +669,10 @@
 
 		var template = $("#template");
 		var stands = $("#tempstand");
+
+		var projects = projects.sort(
+	() => Math.random() - 0.5
+  );
 
 		for (var i = 0; i < projects.length; i++) {
 
