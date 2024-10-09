@@ -682,10 +682,10 @@
 
 			template.find(".description").html(projects[i].longDesc);
 
-			if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".png")) {
+			//if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".png")) {
 				template.find(".logo").attr("src", "/images/fulls/transparent_logos/"+projects[i].no+".png");
-			}
-			else if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".jpg")) {
+			//}
+			/*else if(imageExists("/images/fulls/transparent_logos/"+projects[i].no+".jpg")) {
 					template.find(".logo").attr("src", "/images/fulls/transparent_logos/"+projects[i].no+".jpg");
 			} 
 			else if(imageExists("/images/fulls/logos/"+projects[i].no+".png")) {
@@ -693,14 +693,14 @@
 			} else {
 				template.find(".logo").attr("src", "/images/fulls/logos/"+projects[i].no+".jpg");
 			}
-
-			if(imageExists("/images/team_photos/"+projects[i].no+".png"))
-				template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".png");
-			else if(imageExists("/images/team_photos/"+projects[i].no+".jpg")) {
+			*/
+			//if(imageExists("/images/team_photos/"+projects[i].no+".png"))
+			//	template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".png");
+			//else if(imageExists("/images/team_photos/"+projects[i].no+".jpg")) {
 				template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".jpg");
-			} else {
-				template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".jpeg");
-			}
+			//} else {
+			//	template.find(".logo_link").attr("href", "/images/team_photos/"+projects[i].no+".jpeg");
+			//}
 
 
 			template.find(".fa-github").attr("href", projects[i].gLink);// + projects[i].name.replaceAll(" ", "-"));
@@ -723,7 +723,7 @@
 
 			var chips = ""
 			if(!Array.isArray(projects[i].tags))
-				 chips = projects[i].tags.split(',').map(item => `<p class='chip-item'>${item.trim()}</p>`).join("")
+				 chips = projects[i].tags.split(',').map(item => `<p class='chip-item'>${item.trim()}</p>`).join("");
 			else
 				chips = projects[i].tags.map(item => `<p class='chip-item'>${item.trim()}</p>`).join("")
 			
